@@ -20,16 +20,13 @@
 {{ define "main" }}
 
 {{/* VARS */}}
-{{ $advocatePages := where (where (where .Site.Pages "Section" "team") "Params.roles" "intersect" (slice "advocate"))
-"Params.skills" "ne" nil}}
+{{ $advocatePages := where (where (where .Site.Pages "Section" "team") "Params.roles" "intersect" (slice "advocate")) "Params.skills" "ne" nil}}
 {{ $advocatePages = sort $advocatePages "Params.name" "asc" }}
 {{ $advocates := slice }}
 {{ range $advocatePages }}
 {{ $advocates = $advocates | append .Params.name }}
 {{ end }}
-{{ $latestContent := sort (where .Site.RegularPages "Params.hosts" "intersect" $advocates | union (where
-.Site.RegularPages "Params.team" "intersect" $advocates) ) "Date"
-"desc" }}
+{{ $latestContent := sort (where .Site.RegularPages "Params.hosts" "intersect" $advocates | union (where .Site.RegularPages "Params.team" "intersect" $advocates) ) "Date" "desc" }}
 {{ $latestContent = where $latestContent "Date" "le" now }}
 {{ $latestContent = first 3 $latestContent }}
 
