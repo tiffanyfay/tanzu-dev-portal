@@ -24,3 +24,6 @@
 .hugo_build.lock
 
 spring-shell.log
+
+# Workflows 
+.github/workflows/generate_audit.yaml
