@@ -116,14 +116,14 @@ spell: npm
 #netlify-dev: @ (Netlify Use Only) Command used for Netlify dev local builds
 netlify-dev:
 	@echo Netlify Dev building with ${CONTEXT} context
-	hugo server -w -b ${DEPLOY_URL}
+	hugo server -w
 
 .PHONY: netlify-deploy
 #netlify-deploy: @ (Netlify Use Only) Command used for Netlify deployments
 netlify-deploy: npm 
 	@echo Force install submodule update
 	@git submodule update -f --init --recursive
-	hugo -F -b ${DEPLOY_URL}
+	hugo -F
 	cp public/developer/_redirects public/_redirects
 
 .PHONY: dev-container
